@@ -3,9 +3,11 @@ class TasksController < ApplicationController
   
   
   def index
-    @tasks = Task.all
+    @tasks = Task.all.page(params[:page]).per(10)
   end
-  
+    # = Task.order(id: :desc).page(params[:page]).per(10)
+    #上記のように記述すると、id のカラムを基準に desc （降順）に Message 一覧が表示されます。
+
   def create
     @task = Task.new(task_params)
     if @task.save

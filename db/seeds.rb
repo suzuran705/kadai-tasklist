@@ -5,3 +5,12 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+
+
+#Task.create(status: '4/18', content: 'test content 1')
+#Task.create(status: '4/19', content: 'test content 2')
+#Task.create(status: '4/20', content: 'test content 3')
+
+(1..100).each do |num|
+Task.create(status: 'サンプル' + num.to_s, content: 'サンプル')
+end
