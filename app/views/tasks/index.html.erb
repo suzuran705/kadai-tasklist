@@ -1,13 +1,30 @@
-<h1>タスク一覧</h1>
+<h1>メッセージ一覧</h1>
 
-<ul>
-  <% @tasks.each do |task| %>
-    <li><%= link_to task.id, task %> &raquo; 進捗:<%= task.status %> ／ 内容:<%= task.content %></li>
-  <% end %>
-</ul>
-<%= paginate @tasks %>
-<%= link_to '新規タスク作成', new_task_path %>
+<% if @tasks.any? %>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>id</th>
+        <th>進捗</th>
+        <th>内容</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @tasks.each do |task| %>
+        <tr>
+          <td><%= link_to task.id, task %></td>
+          <td><%= task.status %></td>
+          <td><%= task.content %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+  <div>
+    <%= paginate @tasks %>
+  </div>
+<% end %>
 
+<%= link_to '新規タスク作成', new_task_path, class: "btn btn-primary" %>
 
 <!--link_to は Rails が提供する便利メソッドで、 link_to 表示文字列, リンク先 という形で記述します。
 ここでは、表示文字列 は message.id つまりメッセージの id であり、リンク先 は message となっています。
